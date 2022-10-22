@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%SNOWPACK_PUBLIC_BASE_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Lass dir ein Essen vorschlagen!" />
+  <title>WhatMeal</title>
+  <link rel="stylesheet" href="%SNOWPACK_PUBLIC_BASE_URL%/every-layout.css" />
+  <link rel="stylesheet" href="%SNOWPACK_PUBLIC_BASE_URL%/global.css" />
+
+  <link rel="preload" href="%SNOWPACK_PUBLIC_BASE_URL%/assets/fonts/Montserrat-Bold.ttf" as="font" type="font/ttf" />
+  <link rel="preload" href="%SNOWPACK_PUBLIC_BASE_URL%/assets/fonts/Montserrat-Regular.ttf" as="font" type="font/ttf" />
+
+  <!-- Icons from https://icons.mono.company -->
+  <link href="https://unpkg.com/mono-icons@1.3.1/iconfont/icons.css" rel="stylesheet">
+</head>
+
+<style>
+  /* This style block groups all CSS statements that reference any resources by path as snowpack only checks HTML files for its %SNOWPACK_PUBLIC_BASE_URL% magic string. */
+  @font-face {
+    font-family: "Montserrat-Bold";
+    src: url("%SNOWPACK_PUBLIC_BASE_URL%/assets/fonts/Montserrat-Bold.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Montserrat-Regular";
+    src: url("%SNOWPACK_PUBLIC_BASE_URL%/assets/fonts/Montserrat-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+</style>
+
+<body class="elc-cover">
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <script type="module" src="%SNOWPACK_PUBLIC_BASE_URL%/dist/index.js"></script>
+  <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+</body>
+
+</html>

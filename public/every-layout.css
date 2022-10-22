@@ -1,0 +1,329 @@
+:root {
+    --ratio: 1.22;
+
+    /* Ratios for maintaining visual consistency. */
+    --s-9: calc(var(--s-8) / var(--ratio));
+    --s-8: calc(var(--s-7) / var(--ratio));
+    --s-7: calc(var(--s-6) / var(--ratio));
+    --s-6: calc(var(--s-5) / var(--ratio));
+    --s-5: calc(var(--s-4) / var(--ratio));
+    --s-4: calc(var(--s-3) / var(--ratio));
+    --s-3: calc(var(--s-2) / var(--ratio));
+    --s-2: calc(var(--s-1) / var(--ratio));
+    --s-1: calc(var(--s0) / var(--ratio));
+    --s0: 1rem;
+    --s1: calc(var(--s0) * var(--ratio));
+    --s2: calc(var(--s1) * var(--ratio));
+    --s3: calc(var(--s2) * var(--ratio));
+    --s4: calc(var(--s3) * var(--ratio));
+    --s5: calc(var(--s4) * var(--ratio));
+    --s6: calc(var(--s5) * var(--ratio));
+    --s7: calc(var(--s6) * var(--ratio));
+    --s8: calc(var(--s7) * var(--ratio));
+    --s9: calc(var(--s8) * var(--ratio));
+
+    /* Ratios for maintaining timely consistency. */
+    --t-9: calc(var(--t-8) / var(--ratio));
+    --t-8: calc(var(--t-7) / var(--ratio));
+    --t-7: calc(var(--t-6) / var(--ratio));
+    --t-6: calc(var(--t-5) / var(--ratio));
+    --t-5: calc(var(--t-4) / var(--ratio));
+    --t-4: calc(var(--t-3) / var(--ratio));
+    --t-3: calc(var(--t-2) / var(--ratio));
+    --t-2: calc(var(--t-1) / var(--ratio));
+    --t-1: calc(var(--t0) / var(--ratio));
+    --t0: 1000ms;
+    --t1: calc(var(--t0) * var(--ratio));
+    --t2: calc(var(--t1) * var(--ratio));
+    --t3: calc(var(--t2) * var(--ratio));
+    --t4: calc(var(--t3) * var(--ratio));
+    --t5: calc(var(--t4) * var(--ratio));
+    --t6: calc(var(--t5) * var(--ratio));
+    --t7: calc(var(--t6) * var(--ratio));
+    --t8: calc(var(--t7) * var(--ratio));
+    --t9: calc(var(--t8) * var(--ratio));
+
+    /* Ratios for maintaining general consistency. */
+    --v-9: calc(var(--v-8) / var(--ratio));
+    --v-8: calc(var(--v-7) / var(--ratio));
+    --v-7: calc(var(--v-6) / var(--ratio));
+    --v-6: calc(var(--v-5) / var(--ratio));
+    --v-5: calc(var(--v-4) / var(--ratio));
+    --v-4: calc(var(--v-3) / var(--ratio));
+    --v-3: calc(var(--v-2) / var(--ratio));
+    --v-2: calc(var(--v-1) / var(--ratio));
+    --v-1: calc(var(--v0) / var(--ratio));
+    --v0: 1;
+    --v1: calc(var(--v0) * var(--ratio));
+    --v2: calc(var(--v1) * var(--ratio));
+    --v3: calc(var(--v2) * var(--ratio));
+    --v4: calc(var(--v3) * var(--ratio));
+    --v5: calc(var(--v4) * var(--ratio));
+    --v6: calc(var(--v5) * var(--ratio));
+    --v7: calc(var(--v6) * var(--ratio));
+    --v8: calc(var(--v7) * var(--ratio));
+    --v9: calc(var(--v8) * var(--ratio));
+
+    /* Zero value*/
+    --zero: 0;
+
+    /* Measure width (characters per line) */
+    --measure: 60ch;
+
+    /* Finest unit possible */
+    --finest: 1px;
+}
+
+* {
+    /* In general calculate from border-box. */
+    box-sizing: border-box;
+
+    /* Clear default padding and margin. */
+    margin: 0;
+    padding: 0;
+
+    /* In general cap to nicely readable width. */
+    max-inline-size: var(--measure);
+}
+
+/* Exceptions made to above max-width rule. */
+html,
+body,
+div,
+header,
+nav,
+main,
+footer {
+    max-inline-size: none;
+}
+
+img {
+    max-block-size: 100%;
+}
+
+/* BOX-LAYOUT */
+.elc-box {
+    --box-padding: var(--s0);
+    --box-border-width: var(--finest);
+    padding: var(--box-padding);
+    border: var(--box-border-width) solid;
+}
+
+.elc-box * {
+    color: inherit;
+}
+
+/* CENTER-LAYOUT */
+.elc-center {
+    --center-padding-inline: var(--zero);
+    box-sizing: content-box;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-inline: var(--center-padding-inline);
+}
+
+/* CLUSTER-LAYOUT */
+.elc-cluster {
+    --cluster-gap: var(--s0);
+    --cluster-justify-content: flex-start;
+    --cluster-align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--cluster-gap);
+    justify-content: var(--cluster-justify-content);
+    align-items: var(--cluster-align-items);
+}
+
+/* COVER-LAYOUT */
+.elc-cover {
+    --cover-padding: var(--s0);
+    --cover-margin: var(--s0);
+    --cover-min-block-size: 100%;
+    display: flex;
+    flex-direction: column;
+    min-block-size: var(--cover-min-block-size);
+    padding: var(--cover-padding);
+}
+
+.elc-cover>* {
+    margin-block: var(--cover-margin);
+}
+
+/* If just on child exists, it is main element. */
+.elc-cover> :only-child {
+    margin-block: auto;
+}
+
+/* If two children exist, it is heading and main elements. */
+.elc-cover> :last-child:nth-child(2) {
+    margin-block: auto;
+}
+
+.elc-cover> :first-child:nth-last-child(2) {
+    margin-block-start: 0;
+}
+
+/* If three children exist, it is heading, main and footer elements. */
+.elc-cover> :nth-child(2):nth-last-child(2) {
+    margin-block: auto;
+}
+
+.elc-cover> :first-child:nth-last-child(3) {
+    margin-block-start: 0;
+}
+
+.elc-cover> :last-child::nth-child(3) {
+    margin-block-end: 0;
+}
+
+/* FRAME-LAYOUT */
+.elc-frame {
+    --frame-n: 16;
+    --frame-d: 9;
+    aspect-ratio: var(--frame-n) / var(--frame-d);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.elc-frame>img,
+.elc-frame>video {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+}
+
+/* GRID-LAYOUT */
+.elc-grid {
+    --grid-grid-gap: var(--s0);
+    --grid-column-min-width: var(--s5);
+    display: grid;
+    grid-gap: var(--grid-grid-gap);
+}
+
+.elc-grid {
+    grid-template-columns: repeat(auto-fit,
+            minmax(min(var(--grid-column-min-width), 100%), 1fr));
+}
+
+/* IMPOSTER-LAYOUT */
+.elc-imposter {
+    --imposter-position: absolute;
+    --imposter-margin: var(--s0);
+    position: var(--imposter-position);
+    inset-block-start: 50%;
+    inset-inline-start: 50%;
+    transform: translate(-50%, -50%);
+    max-inline-size: calc(100% - 2 * var(--imposter-margin));
+    max-block-size: calc(100% - 2 * var(--imposter-margin));
+    overflow: auto;
+}
+
+/* REEL-LAYOUT */
+.elc-reel {
+    --reel-block-size: auto;
+    --reel-padding: var(--s0);
+    --reel-gap: var(--s0);
+    display: flex;
+    overflow-x: auto;
+    block-size: var(--reel-block-size);
+    gap: var(--reel-gap);
+}
+
+.elc-reel>* {
+    margin-block: var(--reel-padding);
+}
+
+.elc-reel> :first-child {
+    margin-inline-start: var(--reel-padding);
+}
+
+.elc-reel>:last-child {
+    margin-inline-end: var(--reel-padding);
+}
+
+.elc-reel>img {
+    block-size: 100%;
+    inline-size: auto;
+}
+
+/* SIDEBAR-LAYOUT */
+.elc-sidebar {
+    /* Flex basis for sidebar. */
+    --sidebar-flex-basis: initial;
+    /* Minimum inline size of main content */
+    --sidebar-min-inline-size: 50%;
+    --sidebar-gap: var(--s0);
+    /* Can be set to 'row-reverse' to switch sidebar and main content. */
+    --sidebar-flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: var(--sidebar-flex-direction);
+    gap: var(--sidebar-gap);
+}
+
+.elc-sidebar> :first-child {
+    flex-basis: var(--sidebar-flex-basis);
+    flex-grow: 1;
+}
+
+.elc-sidebar> :last-child {
+    flex-basis: 0;
+    flex-grow: 999;
+    min-inline-size: var(--sidebar-min-inline-size);
+}
+
+/* STACK-LAYOUT */
+/* 
+ * Not directly nestable due to CSS variable override of outer stack.
+ * Use one wrapping element between those with .elc-stack class.
+ */
+.elc-stack {
+    --stack-margin: var(--s0);
+    /* Should be set to 'auto' when splitting is desired. 
+     * Splitting occurs when the stack has exactly two elements.
+     */
+    --stack-split: var(--zero);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.elc-stack> :first-child:nth-last-child(2) {
+    margin-block-end: var(--stack-split);
+}
+
+.elc-stack>*+* {
+    margin-top: var(--stack-margin);
+}
+
+.elc-stack:only-child {
+    block-size: 100%;
+}
+
+/* SWITCHER-LAYOUT */
+.elc-switcher {
+    --switcher-gap: var(--s0);
+    --switcher-threshold: var(--measure);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--switcher-gap);
+
+}
+
+.elc-switcher>* {
+    flex-grow: 1;
+    flex-basis: calc((var(--switcher-threshold) - 100%) * 999);
+}
+
+/* ICON */
+/* Gives icons the size of a box with edge length of lowercase letter 'x'.
+ * As it is square, ther is no need for logical properties.
+ */
+.elc-icon {
+    width: 1ex;
+    height: 1ex;
+}

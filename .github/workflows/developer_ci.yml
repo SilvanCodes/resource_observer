@@ -1,0 +1,71 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Developer CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [main]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup node
+        id: cache-npm
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+          cache: "npm"
+
+      - name: Clean install dependencies
+        run: npm ci --prefer-offline
+
+      - name: Build project
+        run: npm run build
+
+      - name: Upload build
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-dir
+          path: build
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Check cache for dark-cli
+        id: cache-dark-cli
+        uses: actions/cache@v2
+        with:
+          path: ./dark-cli-linux
+          key: dark-cli
+
+      - name: Download dark-cli
+        if: ${{ !steps.cache-dark-cli.outputs.cache-hit }}
+        run: |
+          curl -O https://dark-cli.storage.googleapis.com/latest/dark-cli-linux
+          chmod +x ./dark-cli-linux
+
+      - name: Download build
+        uses: actions/download-artifact@v2
+        with:
+          name: build-dir
+          path: build
+
+      - name: Deploy to Dark
+        env:
+          DARK_CLI_USER: ${{ secrets.DARK_CLI_USER }}
+          DARK_CLI_PASSWORD: ${{ secrets.DARK_CLI_PASSWORD }}
+          DARK_CLI_CANVAS: ${{ secrets.DARK_CLI_CANVAS }}
+        run: ./dark-cli-linux build --canvas $DARK_CLI_CANVAS

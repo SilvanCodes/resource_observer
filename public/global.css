@@ -1,0 +1,174 @@
+:root {
+    --color-blue: #53768A;
+    --color-orange: #E09329;
+    --color-white: #E4DAD9;
+    --border-radius-base: var(--s-4);
+    --font-size-base: var(--s1);
+    --font-size-base-plus: var(--s2);
+    --font-size-big: var(--s3);
+    --font-size-big-plus: var(--s5);
+    --flex-grow-max: 999;
+}
+
+* {
+    font-family: "Montserrat-Regular", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Montserrat-Bold", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+    font-size: var(--font-size-big-plus);
+}
+
+h2 {
+    font-size: var(--font-size-big);
+}
+
+body {
+    background: var(--color-white);
+}
+
+html,
+body,
+main {
+    block-size: 100%;
+}
+
+button {
+    border-radius: var(--border-radius-base);
+    border-style: none;
+    padding: var(--s-1);
+}
+
+button.primary {
+    background: var(--color-orange);
+    min-inline-size: fit-content;
+}
+
+button.secondary {
+    background: var(--color-blue);
+    color: var(--color-white);
+}
+
+button:hover {
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+input {
+    border-radius: var(--border-radius-base);
+    border-style: none;
+    padding: var(--s-1);
+}
+
+.elc-box {
+    border-color: var(--color-blue);
+    border-radius: var(--border-radius-base);
+}
+
+.spin {
+    animation-name: spin;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    display: inline-block;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.pulse {
+    animation-name: pulse;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+    display: inline-block;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(calc(1 / var(--ratio) * 2));
+    }
+}
+
+.text-align\:center {
+    text-align: center;
+}
+
+.font-size\:base {
+    font-size: var(--font-size-base);
+}
+
+.font-size\:base-plus {
+    font-size: var(--font-size-base-plus);
+}
+
+.font-size\:big {
+    font-size: var(--font-size-big);
+}
+
+.font-size\:big-plus {
+    font-size: var(--font-size-big-plus);
+}
+
+.word-break\:break-word {
+    word-break: break-word;
+}
+
+.pulse-on-click {
+    transition: transform var(--t-2) ease-out;
+    transform-origin: center;
+}
+
+.pulse-on-click:active {
+    transform: scale(var(--v-1));
+    transition: transform var(--t-5) ease-in;
+}
+
+.glow-on-click {
+    transition: color var(--t-5) ease-out;
+}
+
+.glow-on-click:active {
+    color: var(--color-blue);
+    transition: color var(--zero) linear;
+}
+
+.flex-grow\:max {
+    flex-grow: var(--flex-grow-max);
+}
+
+.flex-grow\:1 {
+    flex-grow: 1;
+}
+
+.display\:grid {
+    display: grid;
+}
+
+.display\:inline-block {
+    display: inline-block;
+}
+
+.transform\:rotateZ\:90 {
+    transform: rotateZ(90deg);
+}

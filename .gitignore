@@ -1,0 +1,5 @@
+.snowpack
+.envrc
+.env
+build
+node_modules
